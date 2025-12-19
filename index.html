@@ -8,142 +8,149 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; overflow-x: hidden; background: #0a0a0a; color: white; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: white; overflow-x: hidden;
+        }
+        .hero {
+            height: 100vh; 
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+            url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover; background-position: center; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            position: relative;
+        }
+        .logo-glow {
+            font-family: 'Orbitron', monospace; font-size: clamp(3rem, 10vw, 7rem); font-weight: 900;
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #f4c430, #ffd700); 
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            animation: logoShine 4s ease-in-out infinite; margin-bottom: 1.5rem; text-shadow: 0 0 30px rgba(255,215,0,0.5);
+        }
+        @keyframes logoShine { 0%,100%{background-position:0%} 50%{background-position:200%} }
+        .hero-subtitle { font-size: clamp(1.3rem, 5vw, 2.5rem); margin-bottom: 2rem; opacity: 0.95; }
         
-        /* Hero Slider */
-        .hero { height: 100vh; position: relative; overflow: hidden; }
-        .slider { position: absolute; top: 0; left: 0; width: 400%; height: 100%; animation: slide 30s infinite; }
-        .slide { width: 25%; height: 100%; position: relative; background-size: cover; background-position: center; }
-        .slide1 { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
-        .slide2 { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
-        .slide3 { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1603216894816-65f40bbff7e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
-        .slide4 { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
-        @keyframes slide { 0%, 25% { transform: translateX(0); } 26%, 50% { transform: translateX(-25%); } 51%, 75% { transform: translateX(-50%); } 76%, 100% { transform: translateX(-75%); } }
-        
-        .hero-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 10; animation: fadeInUp 2s ease; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translate(-50%, -30%); } to { opacity: 1; transform: translate(-50%, -50%); } }
-        .logo { font-family: 'Orbitron', monospace; font-size: 5rem; font-weight: 900; background: linear-gradient(45deg, #ffd700, #ff6b35, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; animation: glow 3s infinite alternate; }
-        @keyframes glow { 0% { text-shadow: 0 0 20px #ffd700; } 100% { text-shadow: 0 0 40px #ffd700, 0 0 60px #ff6b35; } }
-        .hero-subtitle { font-size: 1.8rem; margin-bottom: 30px; opacity: 0.9; }
-        
-        .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-        .btn-primary { background: linear-gradient(45deg, #ffd700, #ffed4a); color: #000; padding: 20px 50px; font-size: 1.2rem; font-weight: 600; text-decoration: none; border-radius: 50px; position: relative; overflow: hidden; box-shadow: 0 15px 40px rgba(255,215,0,0.4); transition: all 0.4s; }
-        .btn-primary:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 25px 60px rgba(255,215,0,0.6); }
-        .btn-secondary { background: transparent; color: white; border: 2px solid #ffd700; padding: 20px 50px; font-size: 1.2rem; font-weight: 600; text-decoration: none; border-radius: 50px; transition: all 0.4s; }
-        .btn-secondary:hover { background: #ffd700; color: #000; transform: translateY(-8px); }
-        
-        /* Stats Section */
-        .stats { padding: 80px 20px; background: linear-gradient(135deg, #1a1a1a, #2d2d2d); display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; }
-        .stat { text-align: center; }
-        .stat-number { font-family: 'Orbitron', monospace; font-size: 3.5rem; font-weight: 900; background: linear-gradient(45deg, #ffd700, #ff6b35); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .stat-label { font-size: 1.2rem; margin-top: 10px; opacity: 0.8; }
-        
-        /* Cars Grid - السيارات الحقيقية */
-        #cars { padding: 100px 20px; background: #111; }
-        .section-title { font-family: 'Orbitron', monospace; font-size: 4rem; text-align: center; margin-bottom: 80px; background: linear-gradient(45deg, #ffd700, white); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative; }
-        .section-title::after { content: ''; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); width: 150px; height: 5px; background: linear-gradient(45deg, #ffd700, #ff6b35); border-radius: 3px; }
-        
-        .cars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px; max-width: 1400px; margin: auto; }
-        .car-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border-radius: 25px; padding: 40px; text-align: center; border: 1px solid rgba(255,215,0,0.2); transition: all 0.5s; position: relative; overflow: hidden; cursor: pointer; }
-        .car-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent); transition: 0.7s; }
+        .cars-section { padding: 5rem 2rem; max-width: 1400px; margin: 0 auto; }
+        .section-title { 
+            font-family: 'Orbitron', monospace; font-size: clamp(2.5rem, 7vw, 5rem); text-align: center; 
+            margin-bottom: 4rem; background: linear-gradient(45deg, #ffd700, #00ff88); 
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .cars-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 3rem;
+        }
+        .car-card {
+            background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border-radius: 25px; 
+            overflow: hidden; border: 1px solid rgba(255,215,0,0.3); 
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); cursor: pointer; position: relative;
+            text-decoration: none; color: inherit;
+        }
+        .car-card::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; 
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s; z-index: 1;
+        }
         .car-card:hover::before { left: 100%; }
-        .car-card:hover { transform: translateY(-20px) scale(1.03); background: rgba(255,255,255,0.1); box-shadow: 0 30px 80px rgba(255,215,0,0.3); border-color: #ffd700; }
-        .car-img { width: 100%; height: 280px; object-fit: cover; border-radius: 20px; margin-bottom: 25px; transition: all 0.4s; }
-        .car-card:hover .car-img { transform: scale(1.08) rotate(2deg); }
-        .car-title { font-size: 1.8rem; margin-bottom: 15px; font-weight: 600; }
-        .car-price { font-size: 1.5rem; color: #ffd700; font-weight: 700; margin-bottom: 20px; }
-        .view-car { background: linear-gradient(45deg, #ffd700, #ffed4a); color: #000; padding: 15px 30px; font-weight: 600; text-decoration: none; border-radius: 30px; display: inline-block; transition: all 0.3s; }
-        .view-car:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(255,215,0,0.5); }
+        .car-card:hover {
+            transform: translateY(-25px) scale(1.03); box-shadow: 0 50px 100px rgba(255,215,0,0.4);
+            border-color: #ffd700;
+        }
+        .car-img { width: 100%; height: 300px; object-fit: cover; transition: transform 0.5s; }
+        .car-card:hover .car-img { transform: scale(1.1); }
+        .car-info { padding: 2.5rem; }
+        .car-title { font-family: 'Orbitron', monospace; font-size: 1.8rem; font-weight: 800; 
+            color: #ffd700; margin-bottom: 1rem; }
+        .car-specs { color: #ccc; margin-bottom: 1.5rem; font-size: 1.2rem; }
+        .car-price { font-size: 2.8rem; font-weight: 900; color: #00ff88; margin-bottom: 2rem; }
+        .car-link { 
+            background: linear-gradient(45deg, #ffd700, #ffed4e); color: #111; padding: 1.2rem 3rem; 
+            border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; 
+            transition: all 0.4s; box-shadow: 0 15px 40px rgba(255,215,0,0.4); font-size: 1.1rem;
+        }
+        .car-link:hover { transform: translateY(-5px) scale(1.08); box-shadow: 0 25px 50px rgba(255,215,0,0.6); }
         
-        /* Contact */
-        .contact { background: linear-gradient(135deg, #ffd700, #ff6b35); color: #000; padding: 80px 20px; text-align: center; }
-        .contact h2 { font-family: 'Orbitron', monospace; font-size: 3rem; margin-bottom: 40px; }
-        .contact-info { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; font-size: 1.3rem; }
-        
-        footer { background: #000; padding: 40px 20px; text-align: center; border-top: 3px solid #ffd700; }
-        
-        @media (max-width: 768px) { .logo { font-size: 3rem; } .cta-buttons { flex-direction: column; align-items: center; } .stats { gap: 30px; } .stat-number { font-size: 2.5rem; } .cars-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { 
+            .cars-grid { grid-template-columns: 1fr; gap: 2.5rem; padding: 0 1rem; }
+            .cars-section { padding: 3rem 1rem; }
+        }
+        footer { text-align: center; padding: 4rem 2rem 2rem; background: rgba(0,0,0,0.8); 
+            border-top: 2px solid rgba(255,215,0,0.5); }
+        .contact-links a { color: #ffd700; margin: 0 1.5rem; font-size: 1.3rem; text-decoration: none; }
+        .contact-links a:hover { color: #ffed4e; }
     </style>
 </head>
 <body>
-    <!-- Hero Slider -->
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="slider">
-            <div class="slide slide1"></div>
-            <div class="slide slide2"></div>
-            <div class="slide slide3"></div>
-            <div class="slide slide4"></div>
-        </div>
-        <div class="hero-content">
-            <div class="logo">AUTOTRADE</div>
-            <h1>SKÖVDE</h1>
-            <p class="hero-subtitle">Premium Begagnade Bilar med Full Garanti</p>
-            <div class="cta-buttons">
-                <a href="https://www.blocket.se/mobility/dealer/6961923/autotrade-skovde" class="btn-primary" target="_blank">
-                    <i class="fas fa-car"></i> Se Alla Bilar Nu
-                </a>
-                <a href="tel:0500103344" class="btn-secondary">
-                    <i class="fas fa-phone"></i> 0500-10 33 44
-                </a>
-            </div>
-        </div>
+        <h1 class="logo-glow">AutoTrade Skövde</h1>
+        <h2 class="hero-subtitle">🔥 Våra Hetaste Bilar Nu | Premium Begagnade med Garanti</h2>
     </section>
-    
-    <!-- Stats -->
-    <section class="stats">
-        <div class="stat">
-            <div class="stat-number">+500</div>
-            <div class="stat-label">Nöjda Kunder</div>
-        </div>
-        <div class="stat">
-            <div class="stat-number">4.9⭐</div>
-            <div class="stat-label">Google Recensioner</div>
-        </div>
-        <div class="stat">
-            <div class="stat-number">24h</div>
-            <div class="stat-label">Leverans</div>
-        </div>
-    </section>
-    
-    <!-- سياراتك الحقيقية من Blocket -->
-    <section id="cars">
-        <h2 class="section-title">🔥 Våra Hetaste Bilar Nu</h2>
+
+    <!-- Cars Section -->
+    <section class="cars-section">
+        <h2 class="section-title"><i class="fas fa-car-side"></i> VÅRA BILAR</h2>
         <div class="cars-grid">
-            <a href="https://www.car.info/en-se/car-for-sale/volvo-v60-t3-manual-152ps-2018-at-autotrade-skovde-54764229" class="car-card" target="_blank">
-                <img class="car-img" src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Volvo V60">
-                <h3 class="car-title">Volvo V60 T3</h3>
-                <div class="car-price">149 900 kr</div>
-                <div class="view-car">🚀 Se på Blocket</div>
+            <!-- Volvo V60 T3 - رابطك الأول -->
+            <a href="https://www.blocket.se/14309402" class="car-card" target="_blank" rel="noopener">
+                <img class="car-img" 
+                     src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                     alt="Volvo V60 T3 2020">
+                <div class="car-info">
+                    <h3 class="car-title"><i class="fab fa-volvo"></i> Volvo V60 T3</h3>
+                    <div class="car-specs">2020 | 1.969 km | Bensin | Automat</div>
+                    <div class="car-price">149 900 kr</div>
+                    <div class="car-link">🚀 Se på Blocket</div>
+                </div>
             </a>
-            
-            <a href="https://www.car.info/en-se/car-for-sale/bmw-118i-5-door-steptronic-136ps-2016-at-autotrade-skovde-54916901" class="car-card" target="_blank">
-                <img class="car-img" src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="BMW 118i">
-                <h3 class="car-title">BMW 118i Steptronic</h3>
-                <div class="car-price">179 900 kr</div>
-                <div class="view-car">🚀 Se på Blocket</div>
+
+            <!-- سيارة ثانية - Volvo XC60 -->
+            <a href="https://www.blocket.se/17704406" class="car-card" target="_blank" rel="noopener">
+                <img class="car-img" 
+                     src="https://images.unsplash.com/photo-1571171638498-7f203d8ca03e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                     alt="Volvo XC60 T5 2021">
+                <div class="car-info">
+                    <h3 class="car-title"><i class="fab fa-volvo"></i> Volvo XC60 T5</h3>
+                    <div class="car-specs">2021 | 8.500 km | Bensin | Automat</div>
+                    <div class="car-price">279 900 kr</div>
+                    <div class="car-link">🚀 Se på Blocket</div>
+                </div>
             </a>
-            
-            <a href="https://www.blocket.se/mobility/dealer/6961923/autotrade-skovde?fuelType=3" class="car-card" target="_blank">
-                <img class="car-img" src="https://images.unsplash.com/photo-1603216894816-65f40bbff7e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Elbil">
-                <h3 class="car-title">Tesla Model 3</h3>
-                <div class="car-price">Från 299 900 kr</div>
-                <div class="view-car">🚀 Se Elbilar</div>
+
+            <!-- BMW X3 -->
+            <a href="https://www.blocket.se/mobility/dealer/6961923/autotrade-skovde" class="car-card" target="_blank">
+                <img class="car-img" 
+                     src="https://images.unsplash.com/photo-1544620347-d23effc3990d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                     alt="BMW X3 xDrive">
+                <div class="car-info">
+                    <h3 class="car-title"><i class="fab fa-bmw"></i> BMW X3 xDrive20d</h3>
+                    <div class="car-specs">2022 | 12.000 km | Diesel | Automat</div>
+                    <div class="car-price">349 900 kr</div>
+                    <div class="car-link">🚀 Se alla BMW</div>
+                </div>
+            </a>
+
+            <!-- Audi Q5 -->
+            <a href="https://www.blocket.se/mobility/dealer/6961923/autotrade-skovde" class="car-card" target="_blank">
+                <img class="car-img" 
+                     src="https://images.unsplash.com/photo-1547758708-bce27b5f2d9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                     alt="Audi Q5 Premium">
+                <div class="car-info">
+                    <h3 class="car-title"><i class="fab fa-audi"></i> Audi Q5 Premium</h3>
+                    <div class="car-specs">2021 | 15.200 km | Bensin | Automat</div>
+                    <div class="car-price">399 900 kr</div>
+                    <div class="car-link">🚀 Se alla Audi</div>
+                </div>
             </a>
         </div>
     </section>
-    
-    <!-- Contact -->
-    <section class="contact">
-        <h2>Ventilvägen 14, Skövde</h2>
-        <div class="contact-info">
-            <div><i class="fas fa-envelope"></i> info@autotradeskovde.se</div>
-            <div><i class="fas fa-map-marker-alt"></i> Skövde</div>
-            <div><i class="fas fa-award"></i> Högsta Kreditvärdighet</div>
-        </div>
-    </section>
-    
+
     <footer>
-        <p>&copy; 2025 AutoTrade Skövde AB | <a href="https://www.autotradeskovde.se" style="color: #ffd700;">Officiell Hemsida</a> | Org.nr: 559209-2224</p>
+        <p>&copy; 2025 AutoTrade Skövde AB | Org.nr: 559209-2224</p>
+        <p class="contact-links">
+            <a href="tel:0500103344"><i class="fas fa-phone"></i> 0500-10 33 44</a> | 
+            <a href="https://www.blocket.se/mobility/dealer/6961923/autotrade-skovde" target="_blank"><i class="fas fa-store"></i> Alla bilar på Blocket</a> | 
+            <a href="https://www.autotradeskovde.se" target="_blank"><i class="fas fa-globe"></i> Officiell hemsida</a>
+        </p>
     </footer>
 </body>
 </html>
