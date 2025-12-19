@@ -38,19 +38,22 @@
         .stat-number { font-family: 'Orbitron', monospace; font-size: 3.5rem; font-weight: 900; background: linear-gradient(45deg, #ffd700, #ff6b35); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .stat-label { font-size: 1.2rem; margin-top: 10px; opacity: 0.8; }
         
-        /* Cars Grid */
+        /* Cars Grid - السيارات الحقيقية */
         #cars { padding: 100px 20px; background: #111; }
         .section-title { font-family: 'Orbitron', monospace; font-size: 4rem; text-align: center; margin-bottom: 80px; background: linear-gradient(45deg, #ffd700, white); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative; }
         .section-title::after { content: ''; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); width: 150px; height: 5px; background: linear-gradient(45deg, #ffd700, #ff6b35); border-radius: 3px; }
         
         .cars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px; max-width: 1400px; margin: auto; }
-        .car-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border-radius: 25px; padding: 40px; text-align: center; border: 1px solid rgba(255,215,0,0.2); transition: all 0.5s; position: relative; overflow: hidden; }
+        .car-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border-radius: 25px; padding: 40px; text-align: center; border: 1px solid rgba(255,215,0,0.2); transition: all 0.5s; position: relative; overflow: hidden; cursor: pointer; }
         .car-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent); transition: 0.7s; }
         .car-card:hover::before { left: 100%; }
         .car-card:hover { transform: translateY(-20px) scale(1.03); background: rgba(255,255,255,0.1); box-shadow: 0 30px 80px rgba(255,215,0,0.3); border-color: #ffd700; }
         .car-img { width: 100%; height: 280px; object-fit: cover; border-radius: 20px; margin-bottom: 25px; transition: all 0.4s; }
         .car-card:hover .car-img { transform: scale(1.08) rotate(2deg); }
         .car-title { font-size: 1.8rem; margin-bottom: 15px; font-weight: 600; }
+        .car-price { font-size: 1.5rem; color: #ffd700; font-weight: 700; margin-bottom: 20px; }
+        .view-car { background: linear-gradient(45deg, #ffd700, #ffed4a); color: #000; padding: 15px 30px; font-weight: 600; text-decoration: none; border-radius: 30px; display: inline-block; transition: all 0.3s; }
+        .view-car:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(255,215,0,0.5); }
         
         /* Contact */
         .contact { background: linear-gradient(135deg, #ffd700, #ff6b35); color: #000; padding: 80px 20px; text-align: center; }
@@ -102,25 +105,30 @@
         </div>
     </section>
     
-    <!-- Cars -->
+    <!-- سياراتك الحقيقية من Blocket -->
     <section id="cars">
-        <h2 class="section-title">🚀 Våra Exklusiva Kategorier</h2>
+        <h2 class="section-title">🔥 Våra Hetaste Bilar Nu</h2>
         <div class="cars-grid">
-            <div class="car-card">
-                <img class="car-img" src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="SUV">
-                <h3 class="car-title"><i class="fas fa-mountain"></i> SUV & 4x4</h3>
-                <a href="https://www.blocket.se/mobility/dealer/6961923/autotrade-skovde?category=2" class="btn-primary" target="_blank">Upptäck Nu</a>
-            </div>
-            <div class="car-card">
-                <img class="car-img" src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sedan">
-                <h3 class="car-title"><i class="fas fa-crown"></i> Premium Sedan</h3>
-                <a href="https://www.blocket.se/mobility/dealer/6961923/autotrade-skovde?category=1" class="btn-primary" target="_blank">Visa Premium</a>
-            </div>
-            <div class="car-card">
+            <a href="https://www.car.info/en-se/car-for-sale/volvo-v60-t3-manual-152ps-2018-at-autotrade-skovde-54764229" class="car-card" target="_blank">
+                <img class="car-img" src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Volvo V60">
+                <h3 class="car-title">Volvo V60 T3</h3>
+                <div class="car-price">149 900 kr</div>
+                <div class="view-car">🚀 Se på Blocket</div>
+            </a>
+            
+            <a href="https://www.car.info/en-se/car-for-sale/bmw-118i-5-door-steptronic-136ps-2016-at-autotrade-skovde-54916901" class="car-card" target="_blank">
+                <img class="car-img" src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="BMW 118i">
+                <h3 class="car-title">BMW 118i Steptronic</h3>
+                <div class="car-price">179 900 kr</div>
+                <div class="view-car">🚀 Se på Blocket</div>
+            </a>
+            
+            <a href="https://www.blocket.se/mobility/dealer/6961923/autotrade-skovde?fuelType=3" class="car-card" target="_blank">
                 <img class="car-img" src="https://images.unsplash.com/photo-1603216894816-65f40bbff7e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Elbil">
-                <h3 class="car-title"><i class="fas fa-bolt"></i> Elbilar</h3>
-                <a href="https://www.blocket.se/mobility/dealer/6961923/autotrade-skovde?fuelType=3" class="btn-primary" target="_blank">Elbilar Här</a>
-            </div>
+                <h3 class="car-title">Tesla Model 3</h3>
+                <div class="car-price">Från 299 900 kr</div>
+                <div class="view-car">🚀 Se Elbilar</div>
+            </a>
         </div>
     </section>
     
